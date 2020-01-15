@@ -754,9 +754,9 @@ Dim abText() As Byte
 Dim lLen As Long
 
     lngLength = 0
-    lngType = AT_SIGNATURE Or CRYPT_EXPORTABLE Or CRYPT_NO_SALT
+    lngType = CRYPT_EXPORTABLE Or CRYPT_NO_SALT
     If UseExchangeKeyPair Then _
-        lngType = AT_KEYEXCHANGE Or CRYPT_EXPORTABLE Or CRYPT_NO_SALT
+        lngType = CRYPT_EXPORTABLE Or CRYPT_NO_SALT
     
     ' added by Ismail
     Dim b64 As clsCryptoAPIBase64

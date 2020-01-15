@@ -16,7 +16,7 @@ Option Base 0
 Implements IALUGenerator
 
 Private MyActiveLock As ActiveLock3.IActiveLock
-Private MyXMLDoc As MSXML2.DOMDocument40
+Private MyXMLDoc As MSXML2.DOMDocument60
 Private fileXML As String
 
 '===============================================================================
@@ -65,7 +65,7 @@ End Sub
 Private Sub IALUGenerator_SaveProduct(ProdInfo As ProductInfo)
     Dim rootProducts As MSXML2.IXMLDOMNode
     Dim newProductNode As MSXML2.IXMLDOMNode
-    Dim schemaCache As New XMLSchemaCache40
+    Dim schemaCache As New XMLSchemaCache60
     Dim Result As IXMLDOMParseError
     
     Set rootProducts = MyXMLDoc.selectSingleNode("Alugen3")
@@ -203,7 +203,7 @@ Private Property Let IALUGenerator_StoragePath(ByVal RHS As String)
       'save the new created xml doc
       MyXMLDoc.Save (RHS)
     Else
-      Set MyXMLDoc = New MSXML2.DOMDocument40
+      Set MyXMLDoc = New MSXML2.DOMDocument60
       'load existing xml doc
       MyXMLDoc.Load (RHS)
     End If
@@ -214,7 +214,7 @@ Private Sub SetupXmlDoc()
     Dim Version As MSXML2.IXMLDOMProcessingInstruction  '<?xml version="1.0"?>
      
     'Create a new document object
-    Set MyXMLDoc = New MSXML2.DOMDocument40
+    Set MyXMLDoc = New MSXML2.DOMDocument60
     MyXMLDoc.preserveWhiteSpace = False
     MyXMLDoc.async = False
     'tell the parser to automatically load externally defined DTD's or XSD's

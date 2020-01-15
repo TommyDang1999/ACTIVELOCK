@@ -1,0 +1,12 @@
+frmMain = 26, 26, 690, 495, , 26, 26, 1305, 676, C
+modALUGEN = 0, 0, 0, 0, C
+frmAlugenDatabase = 0, 0, 0, 0, C, 78, 78, 1357, 728, C
+frmSearch = 0, 0, 0, 0, C, 104, 104, 1383, 754, C
+CLBHScroll = 0, 0, 0, 0, C
+modBase64 = 0, 0, 0, 0, C
+dlgRegisteredLevel = 0, 0, 0, 0, C, 130, 130, 1409, 780, C
+frmLevelManager = 0, 0, 0, 0, C, 156, 156, 1435, 806, C
+modRegisteredLevel = 0, 0, 0, 0, C
+frmProductsStorage = 0, 0, 0, 0, C, 182, 182, 1461, 832, C
+modWindowsVersion = 0, 0, 0, 0, C
+modActiveLock = 0, 0, 0, 0, C
