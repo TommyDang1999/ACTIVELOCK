@@ -1,6 +1,7 @@
 # ACTIVELOCK
-Welcome to Activelock
-Home of "TOTALLY FREE COPY PROTECTION"
+![Activelock 3 Logo](Images/Activelock_Logo1.jpg)
+## Welcome to Activelock
+### Home of "TOTALLY FREE COPY PROTECTION"
 
 Activelock is an Open Source Copy Protection and Licensing Software developed under
 VB2008, VB2005, VB2003, and VB6.
@@ -24,5 +25,14 @@ Any language that supports the use of COM DLLs can access Activelock libraries f
     Licenses have expiration date, or can be permanent
     Days or Runs based Trial Mode available
     Short Key support for easy phone activation (non-RSA) 
+
+
+## Changelogs
+[VB6](ChangeLog/VB6_ChangeLog.txt)
+[VB.NET 2003](ChangeLog/VB_NET2003_ChangeLog.txt)
+[VB.NET 2008](ChangeLog/VB_NET2008_ChangeLog.txt)
+[VB.NET 2010](ChangeLog/VB_NET2010_ChangeLog.txt)
+[ASP.NET](ChangeLog/ASP_NETAlugen2005_ChangeLog.txt)
+[Activelock Wizard](ChangeLog/Activelock_Wizard_ChangeLog.txt)
 
 Project Administrator: Ismail Alkan 

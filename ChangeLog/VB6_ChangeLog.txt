@@ -1,5 +1,11 @@
 Change Log For Activelock VB6 
-Last Updated: Dec 1 2011 
+Last Updated: Jan 15 2020
+
+v3.7.1 Updates:
+- FIX: Removed check for AT_SIGNATURE in clsCryptoAPI: This allows VCode and GCode to validate correctly in Windows 10
+- UPDATE: Updated Alugen and Activelock to use MSXML 6.0
+- UPDATE: Removed references to "Set_locale" and "Get_locale" so that the system clock remains untouched
+- FIX: Fixed "-2147221499: License invalid. System clock has been tampered. [2]." error being raised falsely - added "Sleep 1000" to prevent UTC(Now) = Lic.LastUsed
 
 v3.7.0 Updates:
 - UPDATE: Added Sleep 500 to the ValidateLic method that handles the license check better
@@ -463,6 +469,6 @@ NEW FEATURES IN V3:
 
  
 --------------------------------------------------------------------------------
-Copyright © 2001-2007 Activelock Software Group
+Copyright ï¿½ 2001-2007 Activelock Software Group
 Project Administrator:
 Ismail Alkan 
