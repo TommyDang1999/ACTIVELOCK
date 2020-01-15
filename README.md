@@ -1,5 +1,5 @@
 # ACTIVELOCK
-![Activelock 3 Logo](Images/Activelock_Logo1.jpg)
+![Activelock 3 Logo](Images/Activelock_Logo1.JPG)
 ## Welcome to Activelock
 ### Home of "TOTALLY FREE COPY PROTECTION"
 
@@ -28,11 +28,11 @@ Any language that supports the use of COM DLLs can access Activelock libraries f
 
 
 ## Changelogs
-[VB6](ChangeLog/VB6_ChangeLog.txt)
-[VB.NET 2003](ChangeLog/VB_NET2003_ChangeLog.txt)
-[VB.NET 2008](ChangeLog/VB_NET2008_ChangeLog.txt)
-[VB.NET 2010](ChangeLog/VB_NET2010_ChangeLog.txt)
-[ASP.NET](ChangeLog/ASP_NETAlugen2005_ChangeLog.txt)
-[Activelock Wizard](ChangeLog/Activelock_Wizard_ChangeLog.txt)
+* [VB6](ChangeLog/VB6_ChangeLog.txt)
+* [VB.NET 2003](ChangeLog/VB_NET2003_ChangeLog.txt)
+* [VB.NET 2008](ChangeLog/VB_NET2008_ChangeLog.txt)
+* [VB.NET 2010](ChangeLog/VB_NET2010_ChangeLog.txt)
+* [ASP.NET](ChangeLog/ASP_NETAlugen2005_ChangeLog.txt)
+* [Activelock Wizard](ChangeLog/Activelock_Wizard_ChangeLog.txt)
 
 Project Administrator: Ismail Alkan 
