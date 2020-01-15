@@ -529,7 +529,7 @@ noRegistration:
         
         If Lic.LicenseType <> allicPermanent Then
             '* lastRunDate = ReadRegVal(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(ActiveLockDate(UTC(Now)), PSWD))
-            lastRunDateStr = ReadRegVal(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(DateToDblString(UTC(Now)), PSWD))
+            lastRunDateStr = ReadRegVal(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(DateToDblString(UTC(now)), PSWD))
             '* If lastRunDate = EncryptMyString("n" & "a" & "n" & "a" & "y", PSWD) Then
             If lastRunDateStr = EncryptMyString("n" & "a" & "n" & "a" & "y", PSWD) Then
                 Err.Raise ActiveLockErrCodeConstants.alerrClockChanged, ACTIVELOCKSTRING, STREXPIREDPERMANENTLY
@@ -561,12 +561,12 @@ noRegistration:
             '* dt1 = ActiveLockDate(CDate(adsText))
             dt1 = DblStringToDate(adsText)
             '* dt2 = ActiveLockDate(UTC(Now))
-            dt2 = UTC(Now)
+            dt2 = UTC(now)
             If dt2 < dt1 And (dt2 < Lic.RegisteredDate Or dt2 > Lic.Expiration) Then
                 Err.Raise ActiveLockErrCodeConstants.alerrClockChanged, ACTIVELOCKSTRING, STRCLOCKCHANGED & " [1]" & Chr(32) & Chr(79) & Chr(98) & Chr(116) & Chr(97) & Chr(105) & Chr(110) & Chr(32) & Chr(110) & Chr(101) & Chr(119) & Chr(32) & Chr(108) & Chr(105) & Chr(99) & Chr(101) & Chr(110) & Chr(115) & Chr(101) & Chr(46)
             End If
             '* Call ADS_Write_Info(mKeyStorePath & ":" & strStream, ActiveLockDate(UTC(Now)))
-            Call ADS_Write_Info(mKeyStorePath & ":" & strStream, DateToDblString(UTC(Now)))
+            Call ADS_Write_Info(mKeyStorePath & ":" & strStream, DateToDblString(UTC(now)))
             
             GoTo continueRegistration
         End If
@@ -579,12 +579,12 @@ continueRegistration:
     lastRunDate = DblStringToDate(DecryptMyString(lastRunDateStr, PSWD))
     'Save the following stream only if we're going forward in time
     '* dt2 = ActiveLockDate(UTC(Now))
-    dt2 = UTC(Now)
+    dt2 = UTC(now)
     If Lic.LicenseType <> allicPermanent Then
         '* If dt2 > CDate(Lic.LastUsed) Then
         If CDate(dt2) > CDate(Lic.LastUsed) Then
             '* licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(ActiveLockDate(UTC(Now)), PSWD))
-            licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(DateToDblString(UTC(Now)), PSWD))
+            licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(DateToDblString(UTC(now)), PSWD))
         '* ElseIf lastRunDate <> CDate(Lic.LastUsed) Then
         ElseIf CDate(lastRunDate) <> CDate(Lic.LastUsed) And lastRunDateStr <> "" Then
             licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", "20C57BF3E3E3B3FD6FD5471724CA4A5C62802EB682E7A11D9469DB67162D47A8")
@@ -599,7 +599,7 @@ continueRegistration:
     ' Return all needed properties for faster form loading
     dontValidateLicense = True
     '* strUsedDays = CStr(CLng(DateDiff("d", ActiveLockDate(CDate(Lic.RegisteredDate)), ActiveLockDate(UTC(Now)))))
-    strUsedDays = CStr(CLng(DateDiff("d", Lic.RegisteredDate, UTC(Now))))
+    strUsedDays = CStr(CLng(DateDiff("d", Lic.RegisteredDate, UTC(now))))
     '* strExpirationDate = Lic.Expiration
     strExpirationDate = CStr(Lic.Expiration)
     strRegisteredUser = Lic.Licensee
@@ -738,7 +738,7 @@ Private Sub ValidateKey(Lic As ProductLicense)
     '* dtExp = ActiveLockDate(CDate(Lic.Expiration))
     '* dtExp = ActiveLockDate(CDate(Lic.Expiration))
     '* If ActiveLockDate(UTC(Now)) > dtExp And Lic.LicenseType <> allicPermanent Then
-    If UTC(Now) > Lic.Expiration And Lic.LicenseType <> allicPermanent Then
+    If UTC(now) > Lic.Expiration And Lic.LicenseType <> allicPermanent Then
         ' ialkan - 9-23-2005 added the following to update and store the license
         ' with the new LastUsed property; otherwise setting the clock back next time
         ' might bypass the protection mechanism
@@ -813,7 +813,7 @@ Private Sub ValidateShortKey(Lic As ProductLicense, ByVal user As String)
             '* If Lic.RegisteredDate = "" Then
             If Lic.RegisteredDate = #1/1/1900# Then
                 '* Lic.RegisteredDate = CStr(ActiveLockDate(UTC(Now)))
-                Lic.RegisteredDate = UTC(Now)
+                Lic.RegisteredDate = UTC(now)
             End If
             ' ignore expiration date if license type is "permanent"
             If Lic.LicenseType <> allicPermanent Then
@@ -844,7 +844,7 @@ Private Sub ValidateShortKey(Lic As ProductLicense, ByVal user As String)
     '* dtExp = ActiveLockDate(CDate(Lic.Expiration))
     dtExp = Lic.Expiration
     '* If ActiveLockDate(UTC(Now)) > dtExp And Lic.LicenseType <> allicPermanent Then
-    If UTC(Now) > dtExp And Lic.LicenseType <> allicPermanent Then
+    If UTC(now) > dtExp And Lic.LicenseType <> allicPermanent Then
         ' ialkan - 9-23-2005 added the following to update and store the license
         ' with the new LastUsed property; otherwise setting the clock back next time
         ' might bypass the protection mechanism
@@ -904,13 +904,13 @@ Private Sub ValidateLic(Lic As ProductLicense)
     If Lic.LicenseType <> allicPermanent Then
         ' Must have NOW>LASTUSED
         '* If ActiveLockDate(UTC(Now)) < ActiveLockDate(CDate(Lic.LastUsed)) Then
-        Sleep 1000 ' If Sleep is set to less than 1000 then runs of the same second will trigger the clock set back error to be raised
-        If UTC(Now) < Lic.LastUsed Then
+        ' Sleep 1000 ' If Sleep is set to less than 1000 then runs of the same second will trigger the clock set back error to be raised
+        If UTC(DateAdd("s", 1, now)) < Lic.LastUsed Then
             Err.Raise ActiveLockErrCodeConstants.alerrClockChanged, ACTIVELOCKSTRING, STRCLOCKCHANGED & " [2]"  ' Clock set back
         End If
         ' Must have NOW<EXPIRATION
         '* If ActiveLockDate(UTC(Now)) > ActiveLockDate(CDate(Lic.Expiration)) Then
-        If UTC(Now) > Lic.Expiration Then
+        If UTC(now) > Lic.Expiration Then
             licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", "20C57BF3E3E3B3FD6FD5471724CA4A5C62802EB682E7A11D9469DB67162D47A8")
             Err.Raise ActiveLockErrCodeConstants.alerrClockChanged, ACTIVELOCKSTRING, STRCLOCKCHANGED & " [3]" ' Clock set forward
         End If
@@ -939,7 +939,7 @@ Private Sub UpdateLastUsed(Lic As ProductLicense)
     '* strLastUsed = ActiveLockDate(UTC(Now))
     '* strLastUsed = ActiveLockDate(CDate(strLastUsed))         ' Chr(0) needed for C/C++ compatibility
     '* Lic.LastUsed = strLastUsed
-    Lic.LastUsed = UTC(Now)
+    Lic.LastUsed = UTC(now)
     '* MyNotifier.Notify "ValidateValue", strLastUsed
     MyNotifier.Notify "ValidateValue", CStr(Lic.LastUsed)
     '* Lic.Hash1 = modMD5.Hash(strLastUsed)
@@ -1144,14 +1144,14 @@ Private Sub IActiveLock_Register(ByVal LibKey As String, Optional user As String
         ' Write the current date and time into the ads
         strStream = mSoftwareName & mSoftwareVer '& mSoftwarePassword
         '* Call ADS_Write_Info(mKeyStorePath & ":" & strStream, ActiveLockDate(UTC(Now)))
-        Call ADS_Write_Info(mKeyStorePath & ":" & strStream, DateToDblString(UTC(Now)))
+        Call ADS_Write_Info(mKeyStorePath & ":" & strStream, DateToDblString(UTC(now)))
     End If
     
     If Lic.LicenseType <> allicPermanent Then
         'lastRegisteredDate = ReadRegVal(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "conf", "")
         'If lastRegisteredDate = "" Then
         'licenseRegisteredDate = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "conf", EncryptMyString(Lic.RegisteredDate, PSWD))
-        licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(ActiveLockDate(UTC(Now)), PSWD))
+        licenseRegistryKey = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "netmeeting", EncryptMyString(ActiveLockDate(UTC(now)), PSWD))
         usedLic = SaveString(HKEY_CURRENT_USER, REGKEY1 & Left(oMD5.CalculateMD5(mSoftwareName & mSoftwareVer), 8), "yek", EncryptMyString(LibKey, PSWD))
         'End If
    End If
@@ -1880,7 +1880,7 @@ Private Property Get IActiveLock_UsedDays() As Long
     'IActiveLock_UsedDays = CLng(DateDiff("d", Lic.RegisteredDate, modActiveLock.UTC(Now)))
     'IActiveLock_UsedDays = CLng(DateDiff("d", CDate(Replace(Lic.RegisteredDate, ".", "-")), modActiveLock.UTC(Now())))
     '* IActiveLock_UsedDays = CLng(DateDiff("d", ActiveLockDate(CDate(Lic.RegisteredDate)), ActiveLockDate(UTC(Now))))
-    IActiveLock_UsedDays = CLng(DateDiff("d", Lic.RegisteredDate, UTC(Now)))
+    IActiveLock_UsedDays = CLng(DateDiff("d", Lic.RegisteredDate, UTC(now)))
     If IActiveLock_UsedDays < 0 Then
         Err.Raise ActiveLockErrCodeConstants.alerrLicenseInvalid, ACTIVELOCKSTRING, STRLICENSEINVALID
     End If
