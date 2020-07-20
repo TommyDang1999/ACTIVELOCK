@@ -35,4 +35,4 @@ Any language that supports the use of COM DLLs can access Activelock libraries f
 * [ASP.NET](ChangeLog/ASP_NETAlugen2005_ChangeLog.txt)
 * [Activelock Wizard](ChangeLog/ActivelockWizard_ChangeLog.txt)
 
-Project Administrator: Ismail Alkan 
+Project Administrator: Bradley Newman
